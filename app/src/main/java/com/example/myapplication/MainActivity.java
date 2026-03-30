@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Intent activityCategorias = new Intent(this, activityCategorias.class);
+        Intent activityCategorias = new Intent(this, CategoriasActivity.class);
 
         binding.btnJogar.setOnClickListener(new View.OnClickListener() {
             @Override

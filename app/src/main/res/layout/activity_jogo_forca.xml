@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     android:orientation="vertical"
-    tools:context=".activity_jogoForca">
+    tools:context=".JogoForcaActivity">
 
     <ImageButton
         android:id="@+id/btnHome"

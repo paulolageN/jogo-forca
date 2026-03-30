@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".activity_resultado"
+            android:name=".ResultadoActivity"
             android:exported="false" />
         <activity
-            android:name=".activity_jogoForca"
+            android:name=".JogoForcaActivity"
             android:exported="false" />
         <activity
-            android:name=".activityCategorias"
+            android:name=".CategoriasActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

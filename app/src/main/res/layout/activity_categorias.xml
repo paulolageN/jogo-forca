@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     android:orientation="vertical"
-    tools:context=".activityCategorias">
+    tools:context=".CategoriasActivity">
 
     <ImageButton
         android:id="@+id/btnVoltar"
