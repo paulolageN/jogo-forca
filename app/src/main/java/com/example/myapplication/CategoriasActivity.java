@@ -14,6 +14,7 @@ import com.example.myapplication.databinding.ActivityCategoriasBinding;
 
 public class CategoriasActivity extends AppCompatActivity {
     ActivityCategoriasBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,12 +27,16 @@ public class CategoriasActivity extends AppCompatActivity {
             return insets;
         });
 
-        Intent activityJogoForca = new Intent(this, JogoForcaActivity.class);
         Intent activityMain = new Intent(this, MainActivity.class);
+        Intent activityJogoForca = new Intent(this, JogoForcaActivity.class);
+        Bundle bundle = new Bundle();
 
         binding.btnAleatorios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(activityJogoForca);
+                bundle.putInt("categoria", 1);
+                activityJogoForca.putExtras(bundle);
                 startActivity(activityJogoForca);
             }
         });
@@ -39,6 +44,8 @@ public class CategoriasActivity extends AppCompatActivity {
         binding.btnAnimais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putInt("categoria", 2);
+                activityJogoForca.putExtras(bundle);
                 startActivity(activityJogoForca);
             }
         });
@@ -46,6 +53,8 @@ public class CategoriasActivity extends AppCompatActivity {
         binding.btnEsportes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putInt("categoria", 3);
+                activityJogoForca.putExtras(bundle);
                 startActivity(activityJogoForca);
             }
         });
@@ -53,6 +62,9 @@ public class CategoriasActivity extends AppCompatActivity {
         binding.btnFrutas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bundle.putInt("categoria", 4);
+                activityJogoForca.putExtras(bundle);
+                startActivity(activityJogoForca);
                 startActivity(activityJogoForca);
             }
         });

@@ -28,6 +28,20 @@ public class ResultadoActivity extends AppCompatActivity {
 
         Intent activityCategorias = new Intent(this, CategoriasActivity.class);
 
+        Bundle ganhouOuPerdeu = getIntent().getExtras();
+
+
+        if(ganhouOuPerdeu != null){
+            int resultado = ganhouOuPerdeu.getInt("resultado");
+            if(resultado == 1){
+                binding.imgResultado.setImageResource(R.mipmap.img_perdeu);
+            }
+            else if(resultado == 2){
+                binding.imgResultado.setImageResource(R.mipmap.img_ganhou);
+            }
+        }
+
+
         binding.btnJogarNovamente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

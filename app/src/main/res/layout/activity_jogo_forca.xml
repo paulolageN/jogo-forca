@@ -17,7 +17,7 @@
         app:srcCompat="@mipmap/btn_home" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgForca"
         android:layout_width="match_parent"
         android:layout_height="212dp"
         app:srcCompat="@mipmap/forca_00" />
@@ -35,7 +35,7 @@
             app:srcCompat="@mipmap/separador" />
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/imgCategoria"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/btn_aleatorios" />
@@ -50,9 +50,10 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txtPalavraSorteada"
         android:layout_width="match_parent"
         android:layout_height="57dp"
+        android:text="_ _ _ _ _"
         android:textAlignment="center"
         android:textColor="#040303"
         android:textSize="24sp"
@@ -284,5 +285,11 @@
             android:layout_weight="1"
             app:srcCompat="@mipmap/letra_c2" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
 </LinearLayout>
