@@ -192,24 +192,28 @@ public class JogoForcaActivity extends AppCompatActivity {
             if(categoria == 1){
                 // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_aleatorio);
+
                 inserirAleatorios();
                 Palavra = aleatorios.get(random.nextInt(aleatorios.size()-1));
             }
             else if(categoria == 2){
                 // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_animais);
+
                 inserirAnimais();
                 Palavra = animais.get(random.nextInt(animais.size()-1));
             }
             else if(categoria == 3){
                 // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_esportes);
+
                 inserirEsportes();
                 Palavra = esportes.get(random.nextInt(esportes.size()-1));
             }
             else{
                 // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_frutas);
+
                 inserirFrutas();
                 Palavra = frutas.get(random.nextInt(frutas.size()-1));
             }
@@ -227,7 +231,7 @@ public class JogoForcaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean achou = verificarLetra('a', Palavra);
-                if(achou == true){
+                if(achou){
                     binding.btnA.setImageResource(R.mipmap.letra_a_correto);
                 }else{
                     binding.btnA.setImageResource(R.mipmap.letra_a_errado);
