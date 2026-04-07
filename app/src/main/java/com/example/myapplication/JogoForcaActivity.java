@@ -25,7 +25,6 @@ public class JogoForcaActivity extends AppCompatActivity {
     int erros = 0;
     int acertos = 0;
 
-    // metodo para inserir palavras aleatorias dentro do array
     public void inserirAleatorios(){
         aleatorios.add("capacete");
         aleatorios.add("teclado");
@@ -37,10 +36,8 @@ public class JogoForcaActivity extends AppCompatActivity {
         aleatorios.add("cadeira");
         aleatorios.add("controle");
         aleatorios.add("ventilador");
-
     }
 
-    // metodo para inserir nomes de animais dentro do array
     public void inserirAnimais(){
         animais.add("cachorro");
         animais.add("gato");
@@ -54,7 +51,6 @@ public class JogoForcaActivity extends AppCompatActivity {
         animais.add("cavalo");
     }
 
-    // metodo para inserir nomes de esportes dentro do array
     public void inserirEsportes(){
         esportes.add("futebol");
         esportes.add("basquete");
@@ -68,7 +64,6 @@ public class JogoForcaActivity extends AppCompatActivity {
         esportes.add("skate");
     }
 
-    // metodo para inserir nomes de frutas dentro do array
     public void inserirFrutas(){
         frutas.add("banana");
         frutas.add("maca");
@@ -82,35 +77,42 @@ public class JogoForcaActivity extends AppCompatActivity {
         frutas.add("manga");
     }
 
-    // metodo para inserir palavra sorteado no array palavra
     public void inserirPalavraSorteada(String palavra){
         palavraSorteada.clear();
-        for(int i=0; i<palavra.length();i++){
+        for(int i = 0; i < palavra.length(); i++){
             palavraSorteada.add("_");
         }
     }
 
-    // metodo para imprimir a palavra sorteada
     public void imprimirPalavraSorteada(){
         String palavra = "";
-        for(String letra: palavraSorteada){
-            palavra += letra+" ";
+        for(String letra : palavraSorteada){
+            palavra += letra + " ";
         }
         binding.txtPalavraSorteada.setText(palavra);
     }
 
+    //verifica se ainda sobrou "_" no array
+    public boolean verificarVitoria(){
+        for(String letra : palavraSorteada){
+            if(letra.equals("_")){
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean verificarLetra(char letra, String palavra){
         boolean temLetra = false;
-        for(int i=0;i<palavra.length();i++){
+        for(int i = 0; i < palavra.length(); i++){
             char L = palavra.charAt(i);
-            if (L == letra){
+            if(L == letra){
                 temLetra = true;
                 palavraSorteada.set(i, Character.toString(letra));
-                acertos++;
             }
         }
 
-        if(erros>=6){
+        if(erros >= 6){
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -120,33 +122,29 @@ public class JogoForcaActivity extends AppCompatActivity {
                     resultadoPerdeu.putExtras(bundle);
                     startActivity(resultadoPerdeu);
                 }
-            },3000);
-
+            }, 3000);
         }
 
-
-        if(acertos==palavra.length()){
+        if(verificarVitoria()){
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Bundle bundle = new Bundle();
                     bundle.putInt("resultado", 2);
-                    Intent resultadoPerdeu = new Intent(JogoForcaActivity.this, ResultadoActivity.class);
-                    resultadoPerdeu.putExtras(bundle);
-                    startActivity(resultadoPerdeu);
+                    Intent resultadoGanhou = new Intent(JogoForcaActivity.this, ResultadoActivity.class);
+                    resultadoGanhou.putExtras(bundle);
+                    startActivity(resultadoGanhou);
                 }
-            },3000);
+            }, 3000);
         }
 
         return temLetra;
     }
 
-    // mudar imagem da forca
     public void mudarImagemForca(){
         erros++;
         binding.imgForca.setImageResource(imagensForca.get(erros));
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,8 +169,6 @@ public class JogoForcaActivity extends AppCompatActivity {
 
         binding.imgForca.setImageResource(imagensForca.get(erros));
 
-
-
         Intent activityCategorias = new Intent(this, CategoriasActivity.class);
 
         aleatorios = new ArrayList<>();
@@ -181,44 +177,37 @@ public class JogoForcaActivity extends AppCompatActivity {
         frutas = new ArrayList<>();
         palavraSorteada = new ArrayList<>();
 
-        // classe para gerar um numero aleatorio
         Random random = new Random();
 
         Bundle dadosRecebidos = getIntent().getExtras();
 
-
         if(dadosRecebidos != null){
-            int categoria = dadosRecebidos.getInt("categorias");
+            int categoria = dadosRecebidos.getInt("categoria");
             if(categoria == 1){
-                // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_aleatorio);
-
                 inserirAleatorios();
-                Palavra = aleatorios.get(random.nextInt(aleatorios.size()-1));
+                Palavra = aleatorios.get(random.nextInt(aleatorios.size()));
             }
             else if(categoria == 2){
-                // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_animais);
-
                 inserirAnimais();
-                Palavra = animais.get(random.nextInt(animais.size()-1));
+                Palavra = animais.get(random.nextInt(animais.size()));
             }
             else if(categoria == 3){
-                // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_esportes);
-
                 inserirEsportes();
-                Palavra = esportes.get(random.nextInt(esportes.size()-1));
+                Palavra = esportes.get(random.nextInt(esportes.size()));
             }
             else{
-                // mudar imagem
                 binding.imgCategoria.setImageResource(R.mipmap.img_frutas);
-
                 inserirFrutas();
-                Palavra = frutas.get(random.nextInt(frutas.size()-1));
+                Palavra = frutas.get(random.nextInt(frutas.size()));
             }
         }
 
+        // chama inserirPalavraSorteada e imprimirPalavraSorteada logo apos sortear a palavra
+        inserirPalavraSorteada(Palavra);
+        imprimirPalavraSorteada();
 
         binding.btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
